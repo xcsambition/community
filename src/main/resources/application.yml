@@ -29,6 +29,6 @@
 #      maximum-pool-size: 15
 #      idle-timeout: 30000
 
-logging:
-  level:
-    com.zfx.community: debug
+#logging:
+#  level:
+#    com.zfx.community: debug

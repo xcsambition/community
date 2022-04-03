@@ -7,6 +7,8 @@ import com.zfx.community.entity.DiscussPost;
 import com.zfx.community.service.AlphaService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -64,13 +66,13 @@ public class CommunityApplicationTests
 
     @Test
     public void test(){
-        System.out.println(AlphaHibernate2);
-        HashMap<Integer, Integer> map = new HashMap<>();
-        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
-        PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>((o1,o2)->o1.getValue()-o2.getValue());
-        char c = '2';
-        int a = (int)c;
-        System.out.println(a);
+//        System.out.println(AlphaHibernate2);
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
+//        PriorityQueue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>((o1,o2)->o1.getValue()-o2.getValue());
+//        char c = '2';
+//        int a = (int)c;
+//        System.out.println(a);
     }
 
     @Autowired
@@ -82,6 +84,19 @@ public class CommunityApplicationTests
 
         int rows = discussPostMapper.selectDiscussPostRows(0);
         System.out.println(rows);
+    }
+
+    @Test
+    public void testLog(){
+        Logger logger = LoggerFactory.getLogger("name");
+        logger.debug("debug");
+        logger.debug(logger.getClass().toString());
+        logger.info("info");
+        logger.debug("debug");
+        logger.info("info");
+        logger.error("error");
+        logger.warn("warn");
+
     }
 
 
