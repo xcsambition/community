@@ -18,6 +18,20 @@
         where id=#{id}
     </select>
 
+    <select id="selectByName" resultType="user">
+        select <include refid="selectFields"></include>
+        from user
+        where username=#{username}
+    </select>
+
+    <select id="selectByEmail" resultType="user">
+        select <include refid="selectFields"></include>
+        from user
+        where email=#{email}
+    </select>
+
+
+
     <insert id="insertUser" parameterType="User" keyProperty="id">
         insert into user
             (<include refid="insertFields"></include>)

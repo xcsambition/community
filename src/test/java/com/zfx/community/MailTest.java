@@ -34,11 +34,13 @@ public class MailTest {
     public void testHtmlMail() {
         String to = "1633697855@qq.com";
         Context context = new Context();
-        context.setVariable("username", "email");
+        context.setVariable("username", "BumBleBee");
         String content = templateEngine.process("/mail/demo", context);
         mailClient.sendMail(to, "demo_Html", content);
 
     }
+
+
 
 
 
