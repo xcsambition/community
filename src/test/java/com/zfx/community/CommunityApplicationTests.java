@@ -81,7 +81,6 @@ public class CommunityApplicationTests
     public void testSelectPosts(){
         List<DiscussPost> postList = discussPostMapper.selectDiscussPosts(149, 0, 10);
         postList.forEach(System.out::println);
-
         int rows = discussPostMapper.selectDiscussPostRows(0);
         System.out.println(rows);
     }
