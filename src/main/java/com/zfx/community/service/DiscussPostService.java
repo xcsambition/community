@@ -16,10 +16,11 @@ public class DiscussPostService {
     @Resource
     private DiscussPostMapper discussPostMapper;
 
-    public List<DiscussPost> findDiscussPosts(int userId,int offset,int limit){
+    public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit) {
         return discussPostMapper.selectDiscussPosts(userId, offset, limit);
     }
-    public int findDiscussPostRows(int userId){
+
+    public int findDiscussPostRows(int userId) {
         return discussPostMapper.selectDiscussPostRows(userId);
     }
 
