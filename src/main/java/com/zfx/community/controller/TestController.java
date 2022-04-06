@@ -1,5 +1,6 @@
 package com.zfx.community.controller;
 
+import com.google.code.kaptcha.Producer;
 import com.zfx.community.dao.AlphaDao;
 import com.zfx.community.utils.CommunityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +28,12 @@ import java.util.Map;
 @RequestMapping("/test")
 @Controller
 public class TestController {
+//    LoggerFactory.getLogger(TestController.class);
     @Autowired
     private AlphaDao alphaDao;
+
+    @Resource()
+    private Producer kaptchaProducer;
 
     @GetMapping("/hello")
     @ResponseBody
@@ -83,7 +93,7 @@ public class TestController {
     @ResponseBody
     public String setSession(HttpSession session) {
         session.setAttribute("id", "zfx");
-        session.setAttribute("password", "xcsambiton");
+        session.setAttribute("password", "xcsambition");
         return "set session";
     }
 
@@ -93,6 +103,28 @@ public class TestController {
 
         String s = "id:" + session.getAttribute("id") + "password:" + session.getAttribute("password");
         return s;
+    }
+
+    @RequestMapping(path = "/kaptcha",method = RequestMethod.GET)
+    public void getKaptcha(HttpServletResponse response, HttpSession session) {
+        //生成验证码
+        String text = kaptchaProducer.createText();
+        BufferedImage image = kaptchaProducer.createImage(text);
+
+        //验证码存入Session
+        session.setAttribute("kaptcha", text);
+
+        response.setContentType("img/png");
+        try {
+            OutputStream os = response.getOutputStream();
+            ImageIO.write(image, "png", os);
+        } catch (IOException e) {
+//            e.printStackTrace();
+
+        }
+
+
+        return;
     }
 
 
