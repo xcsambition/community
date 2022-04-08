@@ -40,8 +40,41 @@ public class MailTest {
 
     }
 
+    @Test
+    public void test() {
+//        int[] nums = new int[3];
+//        for (int i : nums) {
+//            i = 0;
+//        }
+//        Scanner scanner = new Scanner(System.in);
+//        int tartget = scanner.nextInt();
+//        dfs(nums, tartget);
+//        System.out.println("x = " + nums[0]);
+//        System.out.println("y = " + nums[1]);
+//        System.out.println("z = " + nums[2]);
 
+        for (long x = 0; x < 1001; x++) {
+            for (int y = 0; y < 1001; y++) {
+                for (int z = 0; z < 1001; z++) {
+                    if (((5 * x + 6) * y + 6) * z == 22l){
+                        System.out.println("x:"+x+"y:"+y+"z:"+z);
 
+                    }
+                }
+            }
+        }
+    }
+
+//    private void dfs(int[] nums, int sum, int target) {
+//
+//        if (sum == target) {
+//            return;
+//        }
+//        for (int i = 0; i < 3; i++) {
+//            nums[0]
+//
+//        }
+//    }
 
 
 }

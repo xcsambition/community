@@ -1,6 +1,5 @@
 package com.zfx.community.dao;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 @Repository("AlphaHibernate")
