@@ -1,5 +1,6 @@
 package com.zfx.community.controller;
 
+import com.zfx.community.Annoation.LoginRequired;
 import com.zfx.community.entity.User;
 import com.zfx.community.service.UserService;
 import com.zfx.community.utils.CommunityUtil;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author zfx
@@ -46,11 +48,13 @@ public class UserController {
     private UserService userService;
 
 
+    @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage() {
         return "/site/setting";
     }
 
+    @LoginRequired
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
     public String uploadHeader(MultipartFile headerImage, Model model) {
 
@@ -104,7 +108,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/password", method = RequestMethod.POST)
-    public String modifyPassword(Model model,String newPassword, String oldPassword, @CookieValue("ticket") String ticket) {
+    public String modifyPassword(Model model, String newPassword, String oldPassword, @CookieValue("ticket") String ticket) {
         //判断为空
         if (StringUtils.isBlank(newPassword) || StringUtils.isBlank(oldPassword)) {
             model.addAttribute("passwordMsg", "密码不能为空");
@@ -128,4 +132,19 @@ public class UserController {
         userService.logout(ticket);
         return "redirect:/login";
     }
+
+    @LoginRequired
+    @RequestMapping(path = "/updatePassword", method = RequestMethod.POST)
+    public String updatePassword(String oldPassword, String newPassword, Model model) {
+        User user = hostHolder.getUser();
+        Map<String, Object> map = userService.updatePassword(user.getId(), oldPassword, newPassword);
+        if (map == null || map.isEmpty()) {
+            return "redirect:/logout";
+        } else {
+            model.addAttribute("oldPasswordMsg", map.get("oldPasswordMsg"));
+            model.addAttribute("newPasswordMsg", map.get("newPasswordMsg"));
+            return "site/setting";
+        }
+    }
+
 }
