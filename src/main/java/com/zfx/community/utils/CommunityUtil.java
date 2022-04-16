@@ -36,7 +36,7 @@ public class CommunityUtil {
 
     /**
      *
-     * @param code 状态码 0为正常
+     * @param code 状态码 0为正常 403未登录
      * @param msg 状态信息
      * @param map 主要信息
      * @return json字符串
