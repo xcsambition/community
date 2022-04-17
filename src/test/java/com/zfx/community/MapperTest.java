@@ -2,7 +2,6 @@ package com.zfx.community;
 
 import com.zfx.community.dao.DiscussPostMapper;
 import com.zfx.community.dao.LoginTicketMapper;
-import com.zfx.community.entity.DiscussPost;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 /**
  * @author zfx
@@ -63,17 +61,17 @@ public class MapperTest {
 
     }
 
-    @Test
-    public void testInsertDiscuss() {
-        DiscussPost discussPost = new DiscussPost();
-        discussPost.setUserId(281);
-        discussPost.setTitle("test");
-        discussPost.setContent("test content");
-        discussPost.setCreateTime(new Date());
-        int i = discussPostMapper.insertDiscussPost(discussPost);
-        System.out.println(i);
-
-    }
+//    @Test
+//    public void testInsertDiscuss() {
+//        DiscussPost discussPost = new DiscussPost();
+//        discussPost.setUserId(281);
+//        discussPost.setTitle("test");
+//        discussPost.setContent("test content");
+//        discussPost.setCreateTime(new Date());
+//        int i = discussPostMapper.insertDiscussPost(discussPost);
+//        System.out.println(i);
+//
+//    }
 
 
 }

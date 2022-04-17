@@ -29,6 +29,11 @@
             and user_id = #{userId}
         </if>
     </select>
+    <select id="selectDiscussPostById" resultType="discussPost">
+        select <include refid="selectFields"></include>
+        from discuss_post
+        where id = #{id}
+    </select>
 
     <insert id="insertDiscussPost" parameterType="discussPost">
         insert into discuss_post(<include refid="insertFields"></include>)
