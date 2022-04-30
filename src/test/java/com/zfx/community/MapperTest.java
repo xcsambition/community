@@ -1,7 +1,9 @@
 package com.zfx.community;
 
+import com.zfx.community.dao.CommentMapper;
 import com.zfx.community.dao.DiscussPostMapper;
 import com.zfx.community.dao.LoginTicketMapper;
+import com.zfx.community.entity.Comment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author zfx
@@ -24,6 +27,18 @@ public class MapperTest {
     LoginTicketMapper loginTicketMapper;
     @Autowired
     private DiscussPostMapper discussPostMapper;
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @Test
+    public void commentTest() {
+        int count = commentMapper.selectCountByEntity(1, 228);
+        System.out.println(count);
+        List<Comment> comments = commentMapper.selectCommentByEntity(1, 228, 0, 4);
+        for (Comment comment : comments) {
+            System.out.println(comment);
+        }
+    }
 
     @Test
     public void loginTicketTest() {
