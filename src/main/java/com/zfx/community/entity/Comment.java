@@ -35,7 +35,7 @@ public class Comment {
     /**
      * 指向的人的id
      */
-    private Integer targetId = 0;
+    private Integer targetId;
 
     /**
      * 内容
