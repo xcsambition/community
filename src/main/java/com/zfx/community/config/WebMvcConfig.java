@@ -1,6 +1,5 @@
 package com.zfx.community.config;
 
-import com.zfx.community.controller.interceptor.DemoInterceptor;
 import com.zfx.community.controller.interceptor.LoginRequiredInterceptor;
 import com.zfx.community.controller.interceptor.LoginTicketInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private LoginTicketInterceptor loginTicketInterceptor;
 
-    @Autowired
-    private DemoInterceptor demoInterceptor;
+//    @Autowired
+//    private DemoInterceptor demoInterceptor;
 
     @Autowired
     private LoginRequiredInterceptor loginRequiredInterceptor;
@@ -29,8 +28,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginTicketInterceptor).
                 excludePathPatterns("/**/*.css","/**/*.js","/**/*.png","/**/*.jpg","/**/*.jpeg");
 
-        registry.addInterceptor(demoInterceptor).
-                excludePathPatterns("/**/*.css","/**/*.js","/**/*.png","/**/*.jpg","/**/*.jpeg");
+//        registry.addInterceptor(demoInterceptor).
+//                excludePathPatterns("/**/*.css","/**/*.js","/**/*.png","/**/*.jpg","/**/*.jpeg");
 
         registry.addInterceptor(loginRequiredInterceptor).
                 excludePathPatterns("/**/*.css","/**/*.js","/**/*.png","/**/*.jpg","/**/*.jpeg");

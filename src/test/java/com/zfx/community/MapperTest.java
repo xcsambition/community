@@ -3,6 +3,7 @@ package com.zfx.community;
 import com.zfx.community.dao.CommentMapper;
 import com.zfx.community.dao.DiscussPostMapper;
 import com.zfx.community.dao.LoginTicketMapper;
+import com.zfx.community.dao.MessageMapper;
 import com.zfx.community.entity.Comment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,9 @@ public class MapperTest {
     private DiscussPostMapper discussPostMapper;
     @Autowired
     private CommentMapper commentMapper;
+
+    @Resource
+    private MessageMapper messageMapper;
 
     @Test
     public void commentTest() {
@@ -87,6 +91,18 @@ public class MapperTest {
 //        System.out.println(i);
 //
 //    }
+
+    @Test
+    public void testMessageMapper() {
+
+//        System.out.println("userId【111】,对话数量："+messageMapper.selectConversations(111,0,10));
+//        System.out.println("userId【111】,对话数量："+messageMapper.selectConversationCount(111));
+//        System.out.println("111_112,前十条对话："+messageMapper.selectLetters("111_112",0,10));
+//        System.out.println(messageMapper.selectLettersCount("111_112"));
+//        System.out.println(messageMapper.selectLetterUnreadCount(111,null));
+//        System.out.println(messageMapper.selectLetterUnreadCount(111,"111_145"));
+
+    }
 
 
 }

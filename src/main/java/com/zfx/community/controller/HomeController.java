@@ -27,6 +27,12 @@ public class HomeController {
     @Resource
     private UserService userService;
 
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String get() {
+        return "redirect:/index";
+    }
+
+
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page) {
         page.setRows(discussPostService.findDiscussPostRows(0));
