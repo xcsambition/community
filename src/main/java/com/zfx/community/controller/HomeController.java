@@ -4,7 +4,9 @@ import com.zfx.community.entity.DiscussPost;
 import com.zfx.community.entity.Page;
 import com.zfx.community.entity.User;
 import com.zfx.community.service.DiscussPostService;
+import com.zfx.community.service.LikeService;
 import com.zfx.community.service.UserService;
+import com.zfx.community.utils.CommunityConstant;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,14 @@ import java.util.Map;
  * @date 2022/4/2 18:04
  */
 @Controller
-public class HomeController {
+public class HomeController implements CommunityConstant {
     @Resource
     private DiscussPostService discussPostService;
     @Resource
     private UserService userService;
+
+    @Resource
+    private LikeService likeService;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String get() {
@@ -45,6 +50,11 @@ public class HomeController {
                 map.put("post", post);
                 User user = userService.findUserById(post.getUserId());
                 map.put("user", user);
+
+                long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId());
+                map.put("likeCount",likeCount);
+
+
                 discussPosts.add(map);
             }
         }

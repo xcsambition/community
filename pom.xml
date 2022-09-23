@@ -12,7 +12,7 @@
     <artifactId>community</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>community</name>
-    <description>a community clone project </description>
+    <description>a community clone project</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -51,23 +51,22 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.0.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.zaxxer</groupId>-->
-<!--                    <artifactId>HikariCP</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--            <exclusions>-->
+        <!--                <exclusion>-->
+        <!--                    <groupId>com.zaxxer</groupId>-->
+        <!--                    <artifactId>HikariCP</artifactId>-->
+        <!--                </exclusion>-->
+        <!--            </exclusions>-->
+        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.2.6</version>
         </dependency>
-
 
 
         <dependency>
@@ -82,18 +81,18 @@
         </dependency>
 
         <!--        <dependency>-->
-<!--            <groupId>junit</groupId>-->
-<!--            <artifactId>junit</artifactId>-->
-<!--            <version>4.11</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--            <groupId>junit</groupId>-->
+        <!--            <artifactId>junit</artifactId>-->
+        <!--            <version>4.11</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
         </dependency>
-<!--画验证码的包-->
+        <!--画验证码的包-->
         <dependency>
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
@@ -104,6 +103,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
 
@@ -117,7 +121,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>
