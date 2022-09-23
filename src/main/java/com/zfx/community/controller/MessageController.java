@@ -5,18 +5,17 @@ import com.zfx.community.entity.Page;
 import com.zfx.community.entity.User;
 import com.zfx.community.service.MessageService;
 import com.zfx.community.service.UserService;
+import com.zfx.community.utils.CommunityUtil;
 import com.zfx.community.utils.HostHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -88,6 +87,19 @@ public class MessageController {
         //私信目标
         model.addAttribute("target", getLetterTarget(conversationId));
 
+        //设置已读
+        List<Integer> ids = new ArrayList<>();
+        if (letterList != null) {
+            letterList.forEach((message -> {
+                if (hostHolder.getUser().getId() == message.getToId() && message.getStatus() == 0) {
+                    ids.add(message.getId());
+                }
+            }));
+        }
+        if (!ids.isEmpty()) {
+            messageService.readMessage(ids);
+        }
+
         return "/site/letter-detail";
 
 
@@ -101,5 +113,25 @@ public class MessageController {
         int targetId = hostHolder.getUser().getId() == d0 ? d1 : d0;
 
         return userService.findUserById(targetId);
+    }
+
+
+    @RequestMapping(value = "/letter/send", method = RequestMethod.POST)
+    @ResponseBody
+    public String sendLetter(String toName, String content) {
+        User target = userService.findUserByName(toName);
+        if (target == null) {
+            return CommunityUtil.getJSONString(1, "目标用户不存在");
+        }
+        Message message = new Message();
+        message.setFromId(hostHolder.getUser().getId());
+        message.setToId(target.getId());
+        message.setConversationId(message.getFromId() < message.getToId() ?
+                message.getFromId() + "_" + message.getToId() :
+                message.getToId() + "_" + message.getFromId());
+        message.setContent(content);
+        message.setCreateTime(new Date());
+        messageService.addMessage(message);
+        return CommunityUtil.getJSONString(0);
     }
 }
