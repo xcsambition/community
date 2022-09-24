@@ -2,6 +2,7 @@ package com.zfx.community.controller;
 
 import com.zfx.community.Annoation.LoginRequired;
 import com.zfx.community.entity.User;
+import com.zfx.community.service.LikeService;
 import com.zfx.community.service.UserService;
 import com.zfx.community.utils.CommunityUtil;
 import com.zfx.community.utils.HostHolder;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -46,6 +48,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Resource
+    private LikeService likeService;
 
 
     @LoginRequired
@@ -145,6 +150,24 @@ public class UserController {
             model.addAttribute("newPasswordMsg", map.get("newPasswordMsg"));
             return "site/setting";
         }
+    }
+
+    //用户主页
+    @RequestMapping(path = "/profile/{userId}",method = RequestMethod.GET)
+    public String getProfile(@PathVariable("userId")int userId, Model model) {
+        User user = userService.findUserById(userId);
+        if (user == null) {
+            throw new RuntimeException("该用户不存在");
+        }
+        // 用户
+        model.addAttribute("user",user);
+        int likeCount = likeService.findUserLikeCount(userId);
+        model.addAttribute("likeCount",likeCount);
+
+
+        return "/site/profile";
+
+
     }
 
 }
