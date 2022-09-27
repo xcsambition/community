@@ -1,4 +1,4 @@
-package com.zfx.community.Annoation;
+package com.zfx.community.annoation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,6 +1,6 @@
 package com.zfx.community.controller.interceptor;
 
-import com.zfx.community.Annoation.LoginRequired;
+import com.zfx.community.annoation.LoginRequired;
 import com.zfx.community.utils.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

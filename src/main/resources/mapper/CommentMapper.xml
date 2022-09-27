@@ -25,12 +25,11 @@
         limit #{offset}, #{limit}
     </select>
     <select id="selectCountByEntity" resultType="java.lang.Integer">
-        select
-            count(id)
+        select count(id)
         from comment
         where status = 0
-        and entity_type = #{entityType}
-        and entity_id = #{entityId}
+          and entity_type = #{entityType}
+          and entity_id = #{entityId}
 
     </select>
 
@@ -38,4 +37,11 @@
         INSERT INTO comment(<include refid="insertFields"></include>)
         VALUES(#{userId},#{entityType},#{entityId},#{targetId},#{content},#{status},#{createTime})
     </insert>
+
+    <select id="selectCommentById" resultType="Comment">
+        select
+        <include refid="selectFields"></include>
+        from comment
+        where id = #{id}
+    </select>
 </mapper>

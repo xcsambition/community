@@ -47,17 +47,17 @@ public class CommunityUtil {
         json.put("msg", msg);
         if (map != null) {
             //lambda
-//           map.forEach((key, value) -> {
-//               json.put(key, value);
-//           });
+           map.forEach((key, value) -> {
+               json.put(key, value);
+           });
             //迭代器
 //            Set<Map.Entry<String, Object>> entries = map.entrySet();
 //            for (Map.Entry<String, Object> entry : entries) {
 //                json.put(entry.getKey(), entry.getValue());
 //            }
-            for (String key : map.keySet()) {
-                json.put(key, map.get(key));
-            }
+//            for (String key : map.keySet()) {
+//                json.put(key, map.get(key));
+//            }
 
 //            json.putAll(map);
         }

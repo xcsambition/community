@@ -1,6 +1,6 @@
 package com.zfx.community.controller;
 
-import com.zfx.community.Annoation.LoginRequired;
+import com.zfx.community.annoation.LoginRequired;
 import com.zfx.community.entity.User;
 import com.zfx.community.service.FollowService;
 import com.zfx.community.service.LikeService;
